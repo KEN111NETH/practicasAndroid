@@ -1,120 +1,149 @@
 
-package com.example.practicasandroid.navegacion
+package com.example.practicasandroid
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.practicasandroid.practicas.contador.ContadorScreen
 
-import com.example.practicasandroid.practicas.ejercicio01.AforoScreen
-import com.example.practicasandroid.practicas.ejercicio02.LecturaScreen
-import com.example.practicasandroid.practicas.ejercicio03.InscripcionScreen
-import com.example.practicasandroid.practicas.ejercicio04.CarritoScreen
-import com.example.practicasandroid.practicas.ejercicio05.CuentaScreen
-import com.example.practicasandroid.practicas.ejercicio06.TareasScreen
-import com.example.practicasandroid.practicas.ejercicio07.LoginScreen
-import com.example.practicasandroid.practicas.ejercicio08.ResenaScreen
-import com.example.practicasandroid.practicas.ejercicio09.PresupuestoScreen
-import com.example.practicasandroid.practicas.ejercicio10.QuizScreen
+// Práctica 01
+import com.example.practicasandroid.practicas.aforo.AforoScreen
+
+// Práctica 02
+import com.example.practicasandroid.practicas.lectura.LecturaScreen
+
+// Práctica 03
+import com.example.practicasandroid.practicas.inscripcion.InscripcionScreen
+
+// Práctica 04
+import com.example.practicasandroid.practicas.carrito.CarritoScreen
+
+// Práctica 05
+import com.example.practicasandroid.practicas.cuenta.CuentaScreen
+
+// Práctica 06
+import com.example.practicasandroid.practicas.tareas.TareasScreen
+
+// Práctica 07
+import com.example.practicasandroid.practicas.login.LoginScreen
+
+// Práctica 08
+import com.example.practicasandroid.practicas.resena.ResenaScreen
+
+// Práctica 09
+import com.example.practicasandroid.practicas.presupuestos.PresupuestoScreen
+
+// Práctica 10
+import com.example.practicasandroid.practicas.cuestionario.QuizScreen
+
+// Práctica 11
+import com.example.practicasandroid.practicas.Practica11
+
+// Práctica 12
+import com.example.practicasandroid.practicas.Practica12
+
+// Práctica 13
+import com.example.practicasandroid.practicas.Practica13
+
+// Práctica 14
+import com.example.practicasandroid.practicas.contador.ContadorScreen
+// Práctica 15
+import com.example.practicasandroid.practicas.suma.SumaScreen
+// Práctica 16
+import com.example.practicasandroid.practicas.ejercicio16.Screens.SiglasScreen
 
 @Composable
 fun PracticasApp() {
-    var ejercicioSeleccionado by remember {
+
+    var practicaSeleccionada by remember {
         mutableIntStateOf(0)
     }
 
-    val ejercicios = listOf(
+    val practicas = listOf(
         "01. Control de aforo",
-        "02. Ajustes de lectura",
-        "03. Inscripción a talleres",
+        "02. Lectura",
+        "03. Inscripción",
         "04. Carrito de compras",
-        "05. Dividir cuenta",
-        "06. Gestor de tareas",
-        "07. Clínica Vida - Login",
-        "08. Reseñas de restaurantes",
-        "09. Presupuesto mensual",
-        "10. Quiz de programación"
+        "05. Cuenta",
+        "06. Lista de tareas",
+        "07. Inicio de sesión",
+        "08. Reseñas",
+        "09. Presupuesto",
+        "10. Quiz de programación",
+        "11. Calculadora",
+        "12. Gestión de listas",
+        "13. Registro de personas",
+        "14. Contador",
+        "15. Suma",
+        "16. Número de siglas"
     )
 
-    Scaffold { paddingValues ->
+    Scaffold { padding ->
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues)
+                .padding(padding)
+                .padding(16.dp)
         ) {
-            if (ejercicioSeleccionado == 0) {
 
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(20.dp)
+            if (practicaSeleccionada == 0) {
+
+                Text(
+                    text = "Mis prácticas Android",
+                    style = MaterialTheme.typography.headlineMedium
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                LazyColumn(
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(
-                        text = "Prácticas Android",
-                        style = MaterialTheme.typography.headlineLarge
-                    )
+                    itemsIndexed(practicas) { index, nombre ->
 
-                    Text(
-                        text = "Jetpack Compose - 10 ejercicios de estado",
-                        style = MaterialTheme.typography.bodyLarge
-                    )
-
-                    Spacer(modifier = Modifier.height(20.dp))
-
-                    LazyColumn(
-                        verticalArrangement = Arrangement.spacedBy(10.dp)
-                    ) {
-                        items(ejercicios.withIndex().toList()) { (index, nombre) ->
-                            Button(
-                                onClick = {
-                                    ejercicioSeleccionado = index + 1
-                                },
-                                modifier = Modifier.fillMaxWidth()
-                            ) {
-                                Text(nombre)
-                            }
+                        Button(
+                            onClick = {
+                                practicaSeleccionada = index + 1
+                            },
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Text(nombre)
                         }
                     }
                 }
 
             } else {
 
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 12.dp, vertical = 8.dp)
-                ) {
-                    TextButton(
-                        onClick = {
-                            ejercicioSeleccionado = 0
-                        }
-                    ) {
-                        Text("← Volver al menú")
+                TextButton(
+                    onClick = {
+                        practicaSeleccionada = 0
                     }
+                ) {
+                    Text("← Volver al menú")
                 }
 
-                HorizontalDivider()
+                when (practicaSeleccionada) {
 
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .weight(1f)
-                ) {
-                    when (ejercicioSeleccionado) {
-                        1 -> AforoScreen()
-                        2 -> LecturaScreen()
-                        3 -> InscripcionScreen()
-                        4 -> CarritoScreen()
-                        5 -> CuentaScreen()
-                        6 -> TareasScreen()
-                        7 -> LoginScreen()
-                        8 -> ResenaScreen()
-                        9 -> PresupuestoScreen()
-                        10 -> QuizScreen()
-                    }
+                    1 -> AforoScreen()
+                    2 -> LecturaScreen()
+                    3 -> InscripcionScreen()
+                    4 -> CarritoScreen()
+                    5 -> CuentaScreen()
+                    6 -> TareasScreen()
+                    7 -> LoginScreen()
+                    8 -> ResenaScreen()
+                    9 -> PresupuestoScreen()
+                    10 -> QuizScreen()
+                    11 -> Practica11()
+                    12 -> Practica12()
+                    13 -> Practica13()
+                    14 -> ContadorScreen()
+                    15 -> SumaScreen()
+                    16 -> SiglasScreen()
                 }
             }
         }

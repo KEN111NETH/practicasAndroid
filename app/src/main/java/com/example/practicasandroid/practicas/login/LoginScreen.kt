@@ -1,5 +1,5 @@
 
-package com.example.practicasandroid.practicas.ejercicio07
+package com.example.practicasandroid.practicas.login
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*

@@ -1,5 +1,5 @@
 
-package com.example.practicasandroid.practicas.ejercicio09
+package com.example.practicasandroid.practicas.presupuestos
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn

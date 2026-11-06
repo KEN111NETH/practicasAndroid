@@ -1,5 +1,5 @@
 
-package com.example.practicasandroid.practicas.ejercicio03
+package com.example.practicasandroid.practicas.inscripcion
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
